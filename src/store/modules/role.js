@@ -37,8 +37,14 @@ const mutations = {
 
 const actions = {
   getRoleItems ({ commit }) {
-    axios
-      .get(`${apiBaseUrl}/roles`)
+    const user = localStorage.getItem('user') != null ? JSON.parse(localStorage.getItem('user')) : null
+    if (user != null) {
+      axios
+      .get(`${apiBaseUrl}/roles`, {
+        headers: {
+          'Authorization': 'Bearer ' + user.token
+        }
+      })
       .then(r => r.data)
       .then(res => {
           console.log(res)
@@ -48,6 +54,7 @@ const actions = {
           commit('getRoleItemError', 'error:getRoleItem')
         }
       })
+    }
   }
 }
 

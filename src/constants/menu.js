@@ -1,29 +1,38 @@
 const data = [{
     id: "dashboards",
     icon: "iconsminds-shop-4",
-    label: "menu.dashboards",
-    to: "/app/dashboards",
-    subs: [{
-        icon: "simple-icon-briefcase",
-        label: "menu.default",
-        to: "/app/dashboards/default"
-    },
-    {
-        icon: "simple-icon-pie-chart",
-        label: "menu.analytics",
-        to: "/app/dashboards/analytics"
-    },
-    {
-        icon: "simple-icon-basket-loaded",
-        label: "menu.ecommerce",
-        to: "/app/dashboards/ecommerce"
-    },
-    {
-        icon: "simple-icon-doc",
-        label: "menu.content",
-        to: "/app/dashboards/content"
-    }
-    ]
+    label: "menu.dashboard",
+    to: "/app/dashboards/content"
+},
+{
+    id: "user-profile",
+    icon: "iconsminds-male-2",
+    label: "menu.my-account",
+    to: "/app/users/user-profile"
+},
+{
+    id: "members",
+    icon: "iconsminds-business-man-woman",
+    label: "menu.members",
+    to: "/app/members/member-list",
+},
+{
+    id: "transactions",
+    icon: "iconsminds-coins",
+    label: "menu.transactions",
+    to: "/app/members/transaction-list",
+},
+{
+    id: "contributions",
+    icon: "iconsminds-financial",
+    label: "menu.contributions",
+    to: "/app/members/contributions-list",
+},
+{
+    id: "investments",
+    icon: "iconsminds-line-chart-3",
+    label: "menu.investments",
+    to: "/app/members/investments-list",
 },
 {
     id: "settings",
@@ -34,11 +43,18 @@ const data = [{
         id: "settings-users",
         label: "menu.users-manage",
         to: "/app/settings/users",
-        subs: [{
-            icon: "iconsminds-network",
-            label: "menu.users",
-            to: "/app/settings/users/user-list"
-        }]
+        subs: [
+            {
+                icon: "iconsminds-network",
+                label: "menu.users",
+                to: "/app/settings/users/user-list"
+            },
+            {
+                icon: "iconsminds-business-man-woman",
+                label: "menu.members",
+                to: "/app/settings/members/member-list"
+            }
+        ]
     },
     {
         id: "settings-security",
@@ -48,12 +64,12 @@ const data = [{
             icon: "iconsminds-security-settings",
             label: "menu.roles",
             to: "/app/settings/security/role"
-        },{
+        }, {
             icon: "iconsminds-key-lock",
             label: "menu.permissions",
             to: "/app/settings/security/permission"
         }]
-    }, 
+    },
     {
         id: "settings-system",
         label: "menu.system",
@@ -68,175 +84,6 @@ const data = [{
             to: "/app/settings/system/upload-center"
         }]
     }]
-},
-{
-    id: "user-profile",
-    icon: "iconsminds-male-2",
-    label: "menu.my-account",
-    to: "/app/users/user-profile"
-},
-{
-    id: "pages",
-    icon: "iconsminds-digital-drawing",
-    label: "menu.pages",
-    to: "/app/pages",
-    subs: [{
-        id: "pages-authorization",
-        label: "menu.authorization",
-        to: "/user",
-        subs: [{
-            icon: "simple-icon-user-following",
-            label: "menu.login",
-            to: "/user/login",
-            newWindow: true
-        },
-        {
-            icon: "simple-icon-user-follow",
-            label: "menu.register",
-            to: "/user/register",
-            newWindow: true
-        },
-        {
-            icon: "simple-icon-user-following",
-            label: "menu.forgot-password",
-            to: "/user/forgot-password",
-            newWindow: true
-        }
-        ]
-    },
-    {
-        id: "pages-product",
-        label: "menu.product",
-        to: "/app/pages/product",
-        subs: [{
-            icon: "simple-icon-credit-card",
-            label: "menu.data-list",
-            to: "/app/pages/product/data-list"
-        },
-        {
-            icon: "simple-icon-list",
-            label: "menu.thumb-list",
-            to: "/app/pages/product/thumb-list"
-        },
-        {
-            icon: "simple-icon-grid",
-            label: "menu.image-list",
-            to: "/app/pages/product/image-list"
-        },
-        {
-            icon: "simple-icon-picture",
-            label: "menu.details",
-            to: "/app/pages/product/details"
-        },
-        {
-            icon: "simple-icon-book-open",
-            label: "menu.details-alt",
-            to: "/app/pages/product/details-alt"
-        },
-        ]
-    },
-    // {
-    //     id: "pages-profile",
-    //     label: "menu.profile",
-    //     to: "/app/pages/profile",
-    //     subs: [{
-    //         icon: "simple-icon-share",
-    //         label: "menu.social",
-    //         to: "/app/pages/profile/social"
-    //     },
-    //     {
-    //         icon: "simple-icon-link",
-    //         label: "menu.portfolio",
-    //         to: "/app/pages/profile/portfolio"
-    //     },
-
-    //     ]
-    // },
-    // {
-    //     id: "pages-blog",
-    //     label: "menu.blog",
-    //     to: "/app/pages/blog",
-    //     subs: [{
-    //         icon: "simple-icon-share",
-    //         label: "menu.blog-list",
-    //         to: "/app/pages/blog/blog-list"
-    //     },
-    //     {
-    //         icon: "simple-icon-link",
-    //         label: "menu.blog-detail",
-    //         to: "/app/pages/blog/blog-detail"
-    //     },
-
-    //     ]
-    //},
-    {
-        id: "pages-miscellaneous",
-        label: "menu.miscellaneous",
-        to: "/app/pages/miscellaneous",
-        subs: [
-            // {
-            //     icon: "simple-icon-question",
-            //     label: "menu.faq",
-            //     to: "/app/pages/miscellaneous/faq"
-            // },
-            // {
-            //     icon: "simple-icon-graduation",
-            //     label: "menu.knowledge-base",
-            //     to: "/app/pages/miscellaneous/knowledge-base"
-            // },
-
-            // {
-            //     icon: "simple-icon-diamond",
-            //     label: "menu.prices",
-            //     to: "/app/pages/miscellaneous/prices"
-            // },
-            {
-                icon: "simple-icon-magnifier",
-                label: "menu.search",
-                to: "/app/pages/miscellaneous/search"
-            },
-            {
-                icon: "simple-icon-envelope-open",
-                label: "menu.mailing",
-                to: "/app/pages/miscellaneous/mailing"
-            },
-            {
-                icon: "simple-icon-bag",
-                label: "menu.invoice",
-                to: "/app/pages/miscellaneous/invoice"
-            },
-
-            {
-                icon: "simple-icon-exclamation",
-                label: "menu.error",
-                to: "/error",
-                newWindow: true
-            }
-        ]
-    },
-    ]
-},
-{
-    id: "applications",
-    icon: "iconsminds-air-balloon-1",
-    label: "menu.applications",
-    to: "/app/applications",
-    subs: [{
-        icon: "simple-icon-check",
-        label: "menu.todo",
-        to: "/app/applications/todo"
-    },
-    {
-        icon: "simple-icon-calculator",
-        label: "menu.survey",
-        to: "/app/applications/survey"
-    },
-    {
-        icon: "simple-icon-bubbles",
-        label: "menu.chat",
-        to: "/app/applications/chat"
-    }
-    ]
 },
 {
     id: "ui",
@@ -259,16 +106,16 @@ const data = [{
                 label: "menu.components",
                 to: "/app/ui/forms/components"
             },
-                // {
-                //     icon: "simple-icon-check",
-                //     label: "menu.validations",
-                //     to: "/app/ui/forms/validations"
-                // },
-                // {
-                //     icon: "simple-icon-magic-wand",
-                //     label: "menu.wizard",
-                //     to: "/app/ui/forms/wizard"
-                // }
+                {
+                    icon: "simple-icon-check",
+                    label: "menu.validations",
+                    to: "/app/ui/forms/validations"
+                },
+                {
+                    icon: "simple-icon-magic-wand",
+                    label: "menu.wizard",
+                    to: "/app/ui/forms/wizard"
+                }
             ]
         },
         {
@@ -402,19 +249,6 @@ const data = [{
         ]
     }
     ]
-},
-{
-    id: "blank-page",
-    icon: "iconsminds-bucket",
-    label: "menu.blank-page",
-    to: "/app/blank-page"
-},
-{
-    id: "docs",
-    icon: "iconsminds-library",
-    label: "menu.docs",
-    to: "https://piaf-vue-docs.coloredstrategies.com/",
-    newWindow: true
-}
+ }
 ];
 export default data;

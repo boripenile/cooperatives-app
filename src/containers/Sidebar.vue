@@ -69,8 +69,10 @@ import menuItems from '../constants/menu'
 export default {
     data() {
         return {
+            currentUser: localStorage.getItem('user') != null ? JSON.parse(localStorage.getItem('user')) : null,
             selectedParentMenu: '',
             isMenuOver: false,
+
             menuItems,
             viewingParentMenu: ''
         }
@@ -86,7 +88,6 @@ export default {
         document.removeEventListener('click', this.handleDocumentClick)
         window.removeEventListener('resize', this.handleWindowResize)
     },
-
     methods: {
         ...mapMutations(['changeSideMenuStatus', 'addMenuClassname', 'changeSelectedMenuHasSubItems']),
         selectMenu() {
@@ -99,6 +100,16 @@ export default {
             this.isCurrentMenuHasSubItem();
         },
         isCurrentMenuHasSubItem() {
+            var role = this.currentUser.user.roles.filter(x => x.name === 'member')[0];
+            if (role) {
+                console.log('Role: ' + role.name)
+                var settingMenu = this.menuItems.find(x => x.id === 'settings')
+                if (settingMenu) {
+                    var indexOf = this.menuItems.indexOf(settingMenu)
+                    console.log('At location: ' + indexOf)
+                    this.menuItems.splice(indexOf, 1)
+                }
+            }
             const menuItem = this.menuItems.find(x => x.id === this.selectedParentMenu);
             const isCurrentMenuHasSubItem = menuItem && menuItem.subs && menuItem.subs.length > 0 ? true : false;
             if (isCurrentMenuHasSubItem != this.selectedMenuHasSubItems) {
@@ -262,7 +273,6 @@ export default {
     watch: {
         '$route'(to, from) {
             if (to.path !== from.path) {
-
                 const toParentUrl = to.path.split('/').filter(x => x !== '')[1];
                 if (toParentUrl !== undefined || toParentUrl !== null) {
                     this.selectedParentMenu = toParentUrl.toLowerCase()

@@ -160,6 +160,7 @@ export default {
     },
     data() {
         return {
+            reload: true,
             glideIconsOption: {
                 gap: 5,
                 perView: 4,
@@ -258,6 +259,20 @@ export default {
         quickPostSubmit() {
             console.log(this.quickPost)
         }
+    },
+    computed () {
+        
+    },
+    mounted () {
+        console.log('Reload? ' + this.reload)
+        if (this.reload) {
+             console.log('Reloading...')
+             if (location.href.indexOf('reload')==-1){
+                location.href=location.href+'?reload';
+             }
+             this.reload = false
+        }
+        console.log('Reload? ' + this.reload)
     }
 }
 </script>

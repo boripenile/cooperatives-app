@@ -13,8 +13,8 @@
             <h6 class="mb-4">{{ $t('user.login-title')}}</h6>
             <b-form @submit.prevent="formSubmit">
               <label class="form-group has-float-label mb-4">
-                <input type="email" class="form-control" v-model="email">
-                <span>{{ $t('user.email') }}</span>
+                <input type="text" class="form-control" v-model="email">
+                <span>{{ $t('user.username') }}</span>
               </label>
               <label class="form-group has-float-label mb-4">
                 <input type="password" class="form-control" v-model="password">
@@ -55,6 +55,7 @@ export default {
         setTimeout(() => {
           this.$router.push('/')
         }, 500)
+        this.$notify('success', 'Login Successful', "You have successfully logged in", { duration: 3000, permanent: false })
       }
     },
     loginError (val) {

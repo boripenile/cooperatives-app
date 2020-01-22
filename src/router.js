@@ -14,7 +14,7 @@ const routes = [
       {
         path: 'app/dashboards',
         component: () => import(/* webpackChunkName: "dashboards" */ './views/app/dashboards'),
-        redirect: '/app/dashboards/default',
+        redirect: '/app/dashboards/content',
         children: [
           { path: 'default', component: () => import(/* webpackChunkName: "dashboards" */ './views/app/dashboards/Default') },
           { path: 'analytics', component: () => import(/* webpackChunkName: "dashboards" */ './views/app/dashboards/Analytics') },
@@ -23,8 +23,12 @@ const routes = [
         ]
       },
       {
-        path: 'app/users/user-profile/:id',
+        path: 'app/users/user-profile',
         component: () => import(/* webpackChunkName: "user-profile" */ './views/app/users/UserProfile'), props: true
+      },
+      {
+        path: 'app/users/members/:code',
+        component: () => import(/* webpackChunkName: "user-profile" */ './views/app/users/member/MemberDetail'), props: true
       },
       {
         path: 'app/settings',
@@ -53,10 +57,10 @@ const routes = [
           },
           {
             path: 'users',
-            component: () => import(/* webpackChunkName : "users" */ './views/app/settings/users'),
-            redirect: '/app/settings/users/user-list',
+            component: () => import(/* webpackChunkName : "users" */ './views/app/settings/system/users'),
+            redirect: '/app/settings/system/users/user-list',
             children: [
-              { path: 'user-list', component: () => import(/* webpackChunkName: "users" */ './views/app/settings/users/UserList') }
+              { path: 'user-list', component: () => import(/* webpackChunkName: "users" */ './views/app/settings/system/users/UserList') }
             ]
           }
         ]
@@ -170,6 +174,14 @@ const routes = [
     ]
   },
   { path: '/error', component: () => import(/* webpackChunkName: "error" */ './views/Error') },
+  {
+    path: '/verify/:code',
+    component: () => import(/* webpackChunkName: "user-verify" */ './views/user/VerifyAccount'), props: true
+  },
+  {
+    path: '/resetpassword/:code',
+    component: () => import(/* webpackChunkName: "reset-password" */ './views/user/ResetPassword'), props: true
+  },
   {
     path: '/user',
     component: () => import(/* webpackChunkName: "user" */ './views/user'),

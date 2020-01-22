@@ -17,7 +17,7 @@
                 <span>{{ $t('user.email') }}</span>
               </label>
               <div class="d-flex justify-content-end align-items-center">
-                  <b-button type="submit" variant="primary" size="lg" class="btn-shadow">{{ $t('user.reset-password-button')}}</b-button>
+                  <b-button type="submit" :disabled="processing" variant="primary" size="lg" class="btn-shadow">{{ $t('user.reset-password-button')}}</b-button>
               </div>
           </b-form>
         </div>
@@ -26,18 +26,42 @@
   </b-row>
 </template>
 <script>
+import axios from 'axios'
+import { apiBaseUrl } from '../../constants/config'
 export default {
   data () {
     return {
-      fullname: '',
+      processing: false,
       email: '',
       password: ''
     }
   },
   methods: {
     formSubmit () {
-      console.log('forgot-password')
-      this.$router.push('/')
+      if (this.email) {
+        this.processing = true
+        axios
+          .get(`${apiBaseUrl}/resetpassword/email/` + this.email, null)
+          .then(r => r.data)
+          .then(res => {
+            if (res.status === 200) {
+              this.addNotification('success', 'Password reset', res.data)
+              this.processing = false
+            }
+          })
+          .catch(err => {
+            console.log(err.response.data)
+            this.addNotification('error', "Error", err.response.data.message)
+            this.processing = false
+          })
+      }
+    },
+    addNotification (
+      type = 'info',
+      title = 'Message',
+      message = 'This is Notify Message,<br>with html.'
+    ) {
+      this.$notify(type, title, message, { duration: 3000, permanent: false })
     }
   }
 }

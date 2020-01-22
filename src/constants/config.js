@@ -2,7 +2,7 @@ import { constants } from "zlib"
 import axios from 'axios'
 
 export const defaultMenuType = 'menu-default' // 'menu-default', 'menu-sub-hidden', 'menu-hidden';
-export const defaultStartPath = '/app/dashboards/default'
+export const defaultStartPath = '/app/dashboards/content'
 export const searchPath = '/app/pages/miscellaneous/search'
 export const buyUrl = 'https://1.envato.market/nEyZa'
 
@@ -27,7 +27,8 @@ export const firebaseConfig = {
 }
 
 export const apiUrl = 'https://api.coloredstrategies.com'
-export const apiBaseUrl = 'http://localhost:8082/v1'
+// export const apiBaseUrl = 'http://localhost:8092/v1'
+export const apiBaseUrl = 'http://66.228.48.231:8092/v1'
 
 export const currentUser = {
   id: 1,

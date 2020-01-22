@@ -31,7 +31,9 @@ import 'v-calendar/lib/v-calendar.min.css'
 import VueScrollTo from 'vue-scrollto'
 // import firebase from 'firebase/app'
 import 'firebase/auth'
-
+import moment from 'moment'
+  
+Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
 Vue.use(VueI18n)
@@ -66,6 +68,22 @@ Vue.use(VCalendar, {
   popoverDirection: 'bottom'
 })
 Vue.use(VueScrollTo)
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    var date = value.replace('[UTC]', '')
+    return moment.utc(String(date)).format('DD-MMM-YYYY hh:mm a')
+  }
+});
+
+Vue.filter('formatMoney', function(value) {
+  if (value) {
+    var formatter = new Intl.NumberFormat('en-NG', {
+      style: 'currency',
+      currency: 'NGN',
+    });
+    return formatter.format(value)
+  }
+});
 
 // firebase.initializeApp(firebaseConfig)
 

@@ -104,7 +104,7 @@
                         <img :alt="currentUser.title" :src="currentUser.img" />
                     </span>
                 </template>
-                <b-dropdown-item @click="viewProfile(currentUser.user.id)">My Account</b-dropdown-item>
+                <b-dropdown-item @click="viewProfile()">My Account</b-dropdown-item>
                 <b-dropdown-item>Support</b-dropdown-item>
                 <b-dropdown-divider />
                 <b-dropdown-item @click="logout">Sign out</b-dropdown-item>
@@ -196,8 +196,8 @@ export default {
                 this.$router.push('/user/login')
             })
         },
-        viewProfile(userId) {
-            this.$router.push('/app/users/user-profile/' + userId)
+        viewProfile() {
+            this.$router.push('/app/users/user-profile')
         },
         toggleFullScreen() {
             const isInFullScreen = this.isInFullScreen()
